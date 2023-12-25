@@ -1,5 +1,5 @@
 # Template stuff
-# Functions
+# Define functions
 def print_line(print_chars="-", repetition=100):
     """Prints an amount of strings in a row.
        Args:

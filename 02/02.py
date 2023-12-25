@@ -28,24 +28,24 @@ input_list = input_file.read().splitlines()
 
 # Calculate total score, summing the game numbers of possible combinations
 total_score = 0
+# Go through each input line
 for game in input_list:
-    print_line()
-    print(f"TOTAL SCORE: {total_score}")
-    print(game)
+    # Extract the game number as int and rest of text as to search in from input
     extraction = re.match(r"^Game\s(\d+):\s(.*)$", game)
     score = int(extraction[1])
     search_string = extraction[2]
+    # Go through each colour in the dictionary to test if the numbers are not surpassed
     for colour, max_amount in cube_dict.items():
+        # Get the amounts from the game for the colour as integers
         amounts = re.findall(r"(\d+) " + re.escape(colour), search_string)
         amounts = list(map(int, amounts))
-        print(f"colour: {colour}, colour max: {max_amount}, found: {amounts}, max found: {max(amounts)}")
+        # If the highest of the amounts is more than the dictionary value for the colour, break the loop
         if max(amounts) > max_amount:
-            print("Failed")
             break
+    # Else only runs if the for loop has successfully completed
     else:
+        # Add the game number to the total score
         total_score += score
-        print("Passed")
         continue
 
-print(total_score)  # 2377
-
+print(f"Part One total score: {total_score}")  # 2377

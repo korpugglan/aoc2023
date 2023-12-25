@@ -26,7 +26,7 @@ day = "02"
 input_file = open(f"{day}/input_{day}.txt")
 input_list = input_file.read().splitlines()
 
-# Calculate total score, summing the game numbers of possible combinations
+# Part 01: Calculate total score, summing the game numbers of possible combinations
 total_score = 0
 # Go through each input line
 for game in input_list:
@@ -49,3 +49,19 @@ for game in input_list:
         continue
 
 print(f"Part One total score: {total_score}")  # 2377
+
+# Part 02: Calculate a total score, multiplying the minimum amount of cubes needed for the combination and summing them
+new_total_score = 0
+# Go through each input line
+for game in input_list:
+    # Reset the subtotal each time around
+    subtotal = 1
+    # Go through each colour in the dictionary to get their highest value to multiply with
+    for colour in cube_dict.keys():
+        # Get the amounts from the game for the colour as integers
+        amounts = re.findall(r"(\d+) " + re.escape(colour), game)
+        amounts = list(map(int, amounts))
+        subtotal *= max(amounts)
+    new_total_score += subtotal
+
+print(f"Part Two total score: {new_total_score}")  # 71220

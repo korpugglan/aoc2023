@@ -61,7 +61,9 @@ for game in input_list:
         # Get the amounts from the game for the colour as integers
         amounts = re.findall(r"(\d+) " + re.escape(colour), game)
         amounts = list(map(int, amounts))
+        # Multiply the highest value for the current colour with the subtotal
         subtotal *= max(amounts)
+    # Add the subtotal to the total score
     new_total_score += subtotal
 
 print(f"Part Two total score: {new_total_score}")  # 71220

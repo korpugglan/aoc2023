@@ -114,7 +114,7 @@ print(f"Total score: {total_score}")  # 533775
 new_total_score = 0
 max_row_nr = len(input_list) - 1
 # Loop through all the input rows
-for row_nr, input_row in enumerate(input_list[:5]):
+for row_nr, input_row in enumerate(input_list):
     max_position = len(input_row) - 1
     # Loop through the row string and find *
     for position, character in enumerate(input_row):
@@ -177,6 +177,7 @@ for row_nr, input_row in enumerate(input_list[:5]):
             # Add the factor of the numbers to the total score if two have been found
             if len(numbers_list) == 2:
                 new_total_score += (numbers_list[0] * numbers_list[1])
+
             numbers_list = []
 
 print(f"New total score: {new_total_score}")  # 799971216331 too high, 2221562 too low

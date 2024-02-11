@@ -16,3 +16,7 @@ def print_line(print_chars="-", repetition=100):
 day = "99"
 input_file = open(f"{day}/input_{day}.txt")
 input_list = input_file.read().splitlines()
+print_line("*")
+
+print_line("*")
+print("Ciao bella, ciao")

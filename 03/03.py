@@ -180,4 +180,4 @@ for row_nr, input_row in enumerate(input_list):
 
             numbers_list = []
 
-print(f"New total score: {new_total_score}")  # 799971216331 too high, 2221562 too low
+print(f"New total score: {new_total_score}")  # 78236071

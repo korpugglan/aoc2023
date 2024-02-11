@@ -21,43 +21,34 @@ print_line("*")
 
 # Set up a seed dictionary
 seed_dict = {int(seed): 0 for seed in input_list[0][7:].split(" ")}
-# print(seed_dict)
-# print_line("=")
 
-# Loop through all the seeds to get a corresponding value, skipping the first two lines
-hit_found = 0
-# for seed in ["432986705"]:
+# Loop through all the seeds to get a corresponding location value, skipping the first two lines
 for seed in seed_dict.keys():
-    print(f"Seed: {seed}")
-    temp_nr = int(seed)
-    # print_line()
-    # Run through all the input lines
+    temp_nr = seed
+    hit_found = 0
+    # Loop through all the input lines
     for input_string in input_list[2:]:
-        # Reset the hit found counter on empty line
+        # Reset on empty line
         if input_string == "":
             hit_found = 0
-        # Keep skipping to the next line if a hit has been found
+        # Skip if a match has been found
         elif hit_found == 1:
             continue
-        # Check row for hits
-        elif input_string[0].isdigit() and hit_found == 0:
+        # Check for matches
+        elif input_string[0].isdigit():
             map_list = [int(x) for x in input_string.split(" ")]
-            dest_start = map_list[0]
-            source_start = map_list[1]
-            range_length = map_list[2]
-            source_end = (source_start + range_length - 1)
-            # Get the new number on hit
-            if source_start <= temp_nr <= source_end:
-                temp_nr = dest_start + (temp_nr - source_start)
+            # If a match has been found, set the temp_nr to the destination number
+            if map_list[1] <= temp_nr < (map_list[1] + map_list[2] - 1):
+                temp_nr = map_list[0] + (temp_nr - map_list[1])
                 hit_found = 1
-        # else:
-        #     print(f"{input_string} {temp_nr}")
 
+    # Save to dictionary
     seed_dict[seed] = temp_nr
-    print_line("=")
 
+# Get the lowest location value from the dictionary
 result_part_1 = min(seed_dict.values())
-print(f"Solution for part I is: {result_part_1}")  # 216013985 too low
+print(f"Solution for part I is: {result_part_1}")  # 2621354867
+
 
 print_line("*")
 print("Ciao bella, ciao")
